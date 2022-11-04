@@ -1,6 +1,7 @@
 package com.diegogalindo.springboot.controller;
 
 import com.diegogalindo.springboot.domain.Car;
+import com.diegogalindo.springboot.dto.CarDTO;
 import com.diegogalindo.springboot.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,17 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Car> save(@RequestBody Car car){
-        return new ResponseEntity<>(carService.save(car),HttpStatus.CREATED);
+    public ResponseEntity<Car> save(@RequestBody CarDTO carDTO){
+        return new ResponseEntity<>(carService.save(carDTO),HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Car> findById(@PathVariable Long id){
+        return new ResponseEntity<>(carService.findById(id),HttpStatus.OK);
+    }
+
+    @PutMapping()
+    public ResponseEntity<Car> update(@RequestBody CarDTO carDTO){
+        return new ResponseEntity<>(carService.update(carDTO),HttpStatus.OK);
     }
 }

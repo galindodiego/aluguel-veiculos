@@ -15,12 +15,9 @@ public class Car {
 
     private String model;
 
-
     private String color;
-
-
     private int year;
-
+    private boolean available;
     public Long getId() {
         return id;
     }
@@ -51,5 +48,13 @@ public class Car {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
