@@ -1,7 +1,7 @@
 package com.diegogalindo.springboot.dto;
 
 public class CarDTO {
-    private Long id;
+
     private String model;
     private String color;
     private int year;
@@ -30,11 +30,4 @@ public class CarDTO {
         this.year = year;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

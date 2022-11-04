@@ -2,6 +2,8 @@ package com.diegogalindo.springboot.controller;
 
 import com.diegogalindo.springboot.domain.Car;
 import com.diegogalindo.springboot.dto.CarDTO;
+import com.diegogalindo.springboot.dto.CarDTOPostBody;
+import com.diegogalindo.springboot.dto.CarDTOPutBody;
 import com.diegogalindo.springboot.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,8 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Car> save(@RequestBody CarDTO carDTO){
-        return new ResponseEntity<>(carService.save(carDTO),HttpStatus.CREATED);
+    public ResponseEntity<Car> save(@RequestBody CarDTOPostBody carDTOPostBody){
+        return new ResponseEntity<>(carService.save(carDTOPostBody),HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -35,7 +37,13 @@ public class CarController {
     }
 
     @PutMapping()
-    public ResponseEntity<Car> update(@RequestBody CarDTO carDTO){
-        return new ResponseEntity<>(carService.update(carDTO),HttpStatus.OK);
+    public ResponseEntity<Car> update(@RequestBody CarDTOPutBody carDTOPutBody){
+        return new ResponseEntity<>(carService.update(carDTOPutBody),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        carService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

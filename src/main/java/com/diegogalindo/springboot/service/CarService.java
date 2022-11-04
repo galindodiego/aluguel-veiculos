@@ -2,6 +2,8 @@ package com.diegogalindo.springboot.service;
 
 import com.diegogalindo.springboot.domain.Car;
 import com.diegogalindo.springboot.dto.CarDTO;
+import com.diegogalindo.springboot.dto.CarDTOPostBody;
+import com.diegogalindo.springboot.dto.CarDTOPutBody;
 import com.diegogalindo.springboot.map.CarMapper;
 import com.diegogalindo.springboot.repository.CarRepository;
 import org.springframework.http.HttpStatus;
@@ -24,9 +26,8 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public Car save(CarDTO carDTO){
-        carDTO.setId(null);
-        return carRepository.save(CarMapper.INSTANCE.toCar(carDTO));
+    public Car save(CarDTOPostBody carDTOPostBody){
+        return carRepository.save(CarMapper.INSTANCE.toCar(carDTOPostBody));
     }
 
     public Car findById(Long id){
@@ -34,8 +35,12 @@ public class CarService {
     }
 
 
-    public Car update(CarDTO carDTO){
-        findById(CarMapper.INSTANCE.toCar(carDTO).getId());
-        return carRepository.save(CarMapper.INSTANCE.toCar(carDTO));
+    public Car update(CarDTOPutBody carDTOPutBody){
+        findById(carDTOPutBody.getId());
+        return carRepository.save(CarMapper.INSTANCE.toCar(carDTOPutBody));
     }
+    public void delete(Long id){
+        carRepository.delete(findById(id));
+    }
+
 }
