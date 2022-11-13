@@ -2,6 +2,7 @@ package com.diegogalindo.springboot.controller;
 
 import com.diegogalindo.springboot.domain.Car;
 import com.diegogalindo.springboot.dto.CarDTO;
+import com.diegogalindo.springboot.dto.CarDTOPatchBody;
 import com.diegogalindo.springboot.dto.CarDTOPostBody;
 import com.diegogalindo.springboot.dto.CarDTOPutBody;
 import com.diegogalindo.springboot.service.CarService;
@@ -45,5 +46,12 @@ public class CarController {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         carService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Car> updatePartially(@PathVariable Long id,
+                                               @RequestBody CarDTOPatchBody carDTOPatchBody){
+        return new ResponseEntity<>(carService.updatePartially(id,carDTOPatchBody),HttpStatus.OK);
+
     }
 }

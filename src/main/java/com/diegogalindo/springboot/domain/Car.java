@@ -11,13 +11,16 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Integer year;
+    private Boolean available;
+    private Boolean replaceable;
+
 
 
     private String model;
 
     private String color;
-    private int year;
-    private boolean available;
+
     public Long getId() {
         return id;
     }
@@ -42,19 +45,27 @@ public class Car {
         this.color = color;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
-    public boolean isAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
+    }
+
+    public Boolean getReplaceable() {
+        return replaceable;
+    }
+
+    public void setReplaceable(Boolean replaceable) {
+        this.replaceable = replaceable;
     }
 }

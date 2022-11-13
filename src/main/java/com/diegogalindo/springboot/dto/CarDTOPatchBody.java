@@ -1,7 +1,16 @@
 package com.diegogalindo.springboot.dto;
 
-public class CarDTOPostBody extends CarDTO{
+public class CarDTOPatchBody extends CarDTO{
+    private Boolean available;
     private Boolean replaceable;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
 
     public Boolean getReplaceable() {
         return replaceable;

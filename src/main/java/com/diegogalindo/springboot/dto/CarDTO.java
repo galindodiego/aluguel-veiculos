@@ -2,9 +2,10 @@ package com.diegogalindo.springboot.dto;
 
 public class CarDTO {
 
-    private String model;
-    private String color;
-    private int year;
+    protected String model;
+    protected String color;
+    protected Integer year;
+
 
     public String getModel() {
         return model;
@@ -22,12 +23,11 @@ public class CarDTO {
         this.color = color;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
-
 }
