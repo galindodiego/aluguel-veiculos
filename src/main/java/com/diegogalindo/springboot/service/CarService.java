@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 @Service
@@ -57,11 +58,29 @@ public class CarService {
         Car car= findById(id);
         Car newCar= CarPatchMapper.INSTANCE.toCar(carDTOPatchBody);
 
+
+        for (Field field : Car.class.getDeclaredFields()) {
+            field.setAccessible(true);
+
+            try {
+                if(field.get(newCar)!= null && !field.get(newCar).equals(field.get(car))){
+                    field.set(car, field.get(newCar));
+                }
+             } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+        long start = System.nanoTime();
         if(newCar.getModel() != null && !newCar.getModel().equals(car.getModel())) car.setModel(newCar.getModel());
         if(newCar.getColor() != null && !newCar.getColor().equals(car.getColor())) car.setColor(newCar.getColor());
         if(newCar.getYear() != null && !newCar.getYear().equals(car.getYear())) car.setYear(newCar.getYear());
         if(newCar.getReplaceable() != null && !newCar.getReplaceable().equals(car.getReplaceable())) car.setReplaceable(newCar.getReplaceable());
         if(newCar.getAvailable() != null && !newCar.getAvailable().equals(car.getAvailable())) car.setAvailable(newCar.getAvailable());
+
+        long end = System.nanoTime();
+        System.out.println(end - start);
 
         return carRepository.save(car);
 

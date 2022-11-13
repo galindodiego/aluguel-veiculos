@@ -12,8 +12,8 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer year;
-    private Boolean available;
-    private Boolean replaceable;
+    private Boolean available = false;
+    private Boolean replaceable= false;
 
 
 

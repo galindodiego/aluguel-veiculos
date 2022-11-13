@@ -1,7 +1,7 @@
 package com.diegogalindo.springboot.dto;
 
 public class CarDTOPostBody extends CarDTO{
-    private Boolean replaceable;
+    private Boolean replaceable =false;
 
     public Boolean getReplaceable() {
         return replaceable;
