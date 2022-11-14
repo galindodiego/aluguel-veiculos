@@ -18,3 +18,4 @@ spring:
 server:
   error:
     include-message: always
+    include-biding-errors: on_param

@@ -1,9 +1,15 @@
 package com.diegogalindo.springboot.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class CarDTO {
 
+    @NotEmpty(message = "This field model cannot be null or empty")
     protected String model;
+    @NotEmpty(message = "This field model cannot be null or empty")
     protected String color;
+    @NotNull(message = "This field model cannot be null")
     protected Integer year;
 
 

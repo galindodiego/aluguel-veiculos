@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Car> save(@RequestBody CarDTOPostBody carDTOPostBody){
+    public ResponseEntity<Car> save(@RequestBody @Valid CarDTOPostBody carDTOPostBody){
         return new ResponseEntity<>(carService.save(carDTOPostBody),HttpStatus.CREATED);
     }
 
@@ -50,7 +51,7 @@ public class CarController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Car> updatePartially(@PathVariable Long id,
-                                               @RequestBody CarDTOPatchBody carDTOPatchBody){
+                                               @RequestBody CarDTOPatchBody carDTOPatchBody) throws IllegalAccessException {
         return new ResponseEntity<>(carService.updatePartially(id,carDTOPatchBody),HttpStatus.OK);
 
     }
